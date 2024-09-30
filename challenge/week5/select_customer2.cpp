@@ -36,7 +36,7 @@ int main(){
         }
       }
       for (int i=0; i<maxPeople; i++){
-        cout << maxarr[i];
+        cout << maxarr[i] + " ";
       }
       cout << "이 나이가 제일 많습니다." << endl;
       
@@ -48,7 +48,7 @@ int main(){
       for(int i=1; i<maxPeople; i++){
         if(ages[i]<minnumber){
           minnumber = ages[i];
-          minname = names[i];
+          minname = names[i]; 
         }
       }
       for (int i=0; i<maxPeople; i++){
@@ -57,7 +57,7 @@ int main(){
         }
       }
       for (int i=0; i<maxPeople; i++){
-        cout << minarr[i];
+        cout << minarr[i] + " ";
       }
       cout << "이 나이가 제일 적습니다." << endl;
     }else {
