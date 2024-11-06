@@ -48,6 +48,9 @@
     "xmemory": "c",
     "xstring": "c",
     "xtr1common": "c",
-    "xutility": "c"
+    "xutility": "c",
+    "vector": "cpp",
+    "algorithm": "cpp",
+    "optional": "cpp"
   }
 }

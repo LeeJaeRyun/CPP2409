@@ -1,6 +1,7 @@
 // main.cpp
 #include <iostream>
 #include <string>
+#include <vector>
 #include <cstdlib>
 #include <ctime>
 #include "user.h"
@@ -12,17 +13,20 @@ const int mapY = 5;
 
 // 사용자 정의 함수 선언
 bool checkXY(int user_x, int mapX, int user_y, int mapY);
-void displayMap(int map[][mapX], int user_x, int user_y);
-bool checkGoal(int map[][mapX], int user_x, int user_y);
-void moveUser(int &user_x, int &user_y, int dx, int dy, User &user, int map[][mapX]);
-bool CheckUser(User user); // 체력이 0인지 확인하는 함수
+void displayMap(const vector<vector<int>>& map, int user_x, int user_y);
+bool checkGoal(const vector<vector<int>>& map, int user_x, int user_y);
+void moveUser(int &user_x, int &user_y, int dx, int dy, User &user, vector<vector<int>>& map);
+bool CheckUser(const User& user); // 체력이 0인지 확인하는 함수
 
 int main() {
-    int map[mapY][mapX] = { {0, 1, 2, 0, 4},
-                            {1, 0, 0, 2, 0},
-                            {0, 0, 0, 0, 0},
-                            {0, 2, 3, 0, 0},
-                            {3, 0, 0, 0, 2} };
+    // 2차원 배열을 vector로 변환
+    vector<vector<int>> map = {
+        {0, 1, 2, 0, 4},
+        {1, 0, 0, 2, 0},
+        {0, 0, 0, 0, 0},
+        {0, 2, 3, 0, 0},
+        {3, 0, 0, 0, 2}
+    };
 
     User user; // 단일 유저 객체 생성
     int user_x = 0;
@@ -69,7 +73,7 @@ int main() {
     return 0;
 }
 
-void moveUser(int &user_x, int &user_y, int dx, int dy, User &user, int map[][mapX]) {
+void moveUser(int &user_x, int &user_y, int dx, int dy, User &user, vector<vector<int>>& map) {
     int new_x = user_x + dx;
     int new_y = user_y + dy;
 
@@ -98,11 +102,11 @@ void moveUser(int &user_x, int &user_y, int dx, int dy, User &user, int map[][ma
     }
 }
 
-bool CheckUser(User user) {
+bool CheckUser(const User& user) {
     return user.GetHP() > 0;
 }
 
-void displayMap(int map[][mapX], int user_x, int user_y) {
+void displayMap(const vector<vector<int>>& map, int user_x, int user_y) {
     for (int i = 0; i < mapY; i++) {
         for (int j = 0; j < mapX; j++) {
             if (i == user_y && j == user_x) {
@@ -127,6 +131,6 @@ bool checkXY(int user_x, int mapX, int user_y, int mapY) {
     return user_x >= 0 && user_x < mapX && user_y >= 0 && user_y < mapY;
 }
 
-bool checkGoal(int map[][mapX], int user_x, int user_y) {
+bool checkGoal(const vector<vector<int>>& map, int user_x, int user_y) {
     return map[user_y][user_x] == 4;
 }
